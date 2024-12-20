@@ -4,3 +4,5 @@ This is robust User Management System using Microsoft .NET Core WebAPI 8.0. This
 # Technical Documentation and Instructions
 Here is the detailed document which explains design decisions, architecture, and additional features which are implemented in this project.
 It includes instructions on how to set up and run the application locally on your machine.
+
+https://docs.google.com/document/d/1w0hxlNtEo6_G5X50yvORfxbYDPIZyJ-vcnBgzx6nvl4/edit?usp=sharing
