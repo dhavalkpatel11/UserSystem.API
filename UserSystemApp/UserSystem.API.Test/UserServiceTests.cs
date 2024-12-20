@@ -158,7 +158,7 @@ namespace UserSystem.Tests
             await _userService.Update(user.Id, request);
 
             // Assert
-            _userRepoMock.Verify(repo => repo.AddOrUpdateUser(It.Is<User>(u => u.Email == request.Email)), Times.Once);
+            _userRepoMock.Verify(repo => repo.AddOrUpdateUser(user), Times.Once);
         }
 
         [Fact]

@@ -14,20 +14,23 @@ namespace UserSystem.API.Services.Users
 
         public int GetUserId()
         {
-            var userId = GetTokenClaim(Constants.ClaimTypes.UserId);
-            return int.Parse(userId);
+            int userId = 0;
+            int.TryParse(GetTokenClaim(Constants.ClaimTypes.UserId), out userId);
+            return userId;
         }
 
-        private string GetTokenClaim(string claimType)
+        private string? GetTokenClaim(string claimType)
         {
             var handler = new JwtSecurityTokenHandler();
             string authHeader = _httpContextAccessor.HttpContext.Request.Headers.Authorization;
-            if (authHeader != null)
+            if (!string.IsNullOrWhiteSpace(authHeader))
             {
                 authHeader = authHeader.Replace("Bearer ", string.Empty);
-                var token = handler.ReadToken(authHeader) as JwtSecurityToken;
-                var id = token.Claims.FirstOrDefault(claim => claim.Type == claimType)?.Value;
-                return id;
+                if(!string.IsNullOrWhiteSpace(authHeader))
+                {
+                    var securityToken = handler.ReadToken(authHeader) as JwtSecurityToken;
+                    return securityToken?.Claims.FirstOrDefault(claim => claim.Type == claimType)?.Value;
+                }
             }
             return null;
         }

@@ -32,7 +32,7 @@ namespace UserSystem.API.Controllers.Users
 
         [AllowAnonymous]
         [HttpPost("[action]")]
-        public async Task<IActionResult> RegisterProfile(AddUserRequest request)
+        public async Task<IActionResult> Register(AddUserRequest request)
         {
             await _userService.Add(request);
             return Ok(ApiResponse.SuccessMessage("Profile added successfully"));
